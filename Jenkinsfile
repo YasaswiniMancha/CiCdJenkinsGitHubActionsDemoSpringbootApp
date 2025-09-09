@@ -27,7 +27,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t yasaswinigayathrimancha/cicdDemoJenkinsDockerGithub .'
+                bat 'docker build -t yasaswinigayathrimancha/cicddemojenkinsdockergithub .'
             }
         }
 
