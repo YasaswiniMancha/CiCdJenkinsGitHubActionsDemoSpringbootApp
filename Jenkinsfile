@@ -27,15 +27,15 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t yasaswinigayathrimancha/cicddemojenkinsdockergithub .'
+                bat 'docker build -t yasaswinigayathrimancha/cicdemo .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withCredentials([string(credentialsId: 'docker-hub-password', variable: 'DOCKER_HUB_PASS')]) {
-                    bat "echo %DOCKER_HUB_PASS% | docker login -u your-dockerhub-username --password-stdin"
-                    bat 'docker push your-dockerhub-username/springboot-app:latest'
+                    bat "echo %DOCKER_HUB_PASS% | docker login -u yasaswinigayathrimancha --password-stdin"
+                    bat 'docker push yasaswinigayathrimancha/cicdemo'
                 }
             }
         }
