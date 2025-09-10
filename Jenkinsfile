@@ -60,7 +60,7 @@ pipeline {
 
         stage('Deploy') {
               steps {
-                    bat 'docker run -d -p 8080:8080 --name cicd-app yasaswinigayathrimancha/cicdemo:latest'
+                    bat 'docker run -d -p 9090:8080 --name cicd-app yasaswinigayathrimancha/cicdemo:latest'
                    }
                 }
 
