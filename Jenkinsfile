@@ -66,11 +66,23 @@ pipeline {
 }
 
 
-        stage('Deploy') {
-              steps {
-                    bat 'docker run -d -p 9090:8080 --name cicd-app yasaswinigayathrimancha/cicdemo:latest'
-                   }
-                }
+       stage('Deploy') {
+          steps {
+             script {
+            // Stop and remove existing container if running
+            bat '''
+            docker ps -a -q --filter "name=cicd-app" | findstr . >nul && (
+                docker stop cicd-app
+                docker rm cicd-app
+            )
+            '''
+
+            // Run new container
+            bat 'docker run -d -p 9090:8080 --name cicd-app yasaswinigayathrimancha/cicdemo:latest'
+             }
+         }
+     }
+
 
     }
 }
