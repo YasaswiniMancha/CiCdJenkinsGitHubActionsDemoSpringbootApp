@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Step 3: Copy the built jar from your project
-COPY target/CiCdJenkinsGitHubActionsDemoSpringbootApp-0.0.1-SNAPSHOT.jar app.jar
+COPY target/CiCdPipelineJenkinDocker-0.0.1-SNAPSHOT.jar app.jar
 
 # Step 4: Expose port
 EXPOSE 8080

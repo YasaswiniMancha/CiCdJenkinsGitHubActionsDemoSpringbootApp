@@ -19,6 +19,14 @@ pipeline {
                 bat 'mvn clean install -DskipTests'
             }
         }
+        
+        
+        stage('Build Jar') {
+              steps {
+              bat 'mvn clean package -DskipTests'
+         }
+       }
+
 
         stage('Test') {
             steps {
