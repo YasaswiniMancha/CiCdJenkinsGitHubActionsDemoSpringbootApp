@@ -1,4 +1,5 @@
 pipeline {
+	
     agent any
 
     tools {
@@ -14,11 +15,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                bat 'mvn clean install -DskipTests'
-            }
-        }
+  
         
         
         stage('Build Jar') {
@@ -84,5 +81,27 @@ pipeline {
      }
 
 
+
+    stage('Cleanup') {
+            steps {
+                // Remove dangling images to free up space
+                bat 'docker image prune -f'
+            }
+        }
+
+    }
+
+   post {
+        always {
+            echo 'Pipeline completed. Cleaning up workspace...'
+            cleanWs()
+        }
+        success {
+            echo '✅ Build, Docker Push & Deployment Successful!'
+        }
+        failure {
+            echo '❌ Pipeline failed. Please check logs.'
+        }
     }
 }
+
